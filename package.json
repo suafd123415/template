@@ -1,49 +1,69 @@
 {
-  "name": "template",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+  "name": "wechaty-getting-started",
+  "version": "1.18.7",
+  "description": "Wechaty conversational SDK getting start template & examples",
+  "type": "module",
+  "engines": {
+    "node": ">=16",
+    "npm": ">=7"
   },
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint \"examples/*.ts\" \"tests/*.ts\"",
+    "postinstall": "check-node-version --node \">=16\" --npm \">=7\"",
+    "cqrs": "cross-env NODE_OPTIONS=\"--no-warnings --loader=ts-node/esm\" node examples/cqrs/ding-dong-bot.ts ",
+    "start": "cross-env NODE_OPTIONS=\"--no-warnings --loader=ts-node/esm\" node examples/ding-dong-bot.ts",
+    "start:js": "node examples/ding-dong-bot.js",
+    "start:walnut": "cross-env WECHATY_LOG=verbose WECHATY_PUPPET=wechaty-puppet-walnut npm start",
+    "start:service": "cross-env WECHATY_LOG=verbose WECHATY_PUPPET=wechaty-puppet-service npm start",
+    "start:wechat:web": "cross-env WECHATY_LOG=verbose WECHATY_PUPPET=wechaty-puppet-wechat npm start",
+    "start:wechat:padlocal": "cross-env WECHATY_LOG=verbose WECHATY_PUPPET=wechaty-puppet-padlocal npm start",
+    "start:whatsapp:web": "cross-env WECHATY_LOG=verbose WECHATY_PUPPET=wechaty-puppet-whatsapp npm start",
+    "test": "npm-run-all lint test:smoke",
+    "test:smoke": "cross-env NODE_OPTIONS=\"--no-warnings --loader=ts-node/esm\" tap \"tests/**/*.spec.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wechaty/getting-started.git"
+  },
+  "keywords": [],
+  "author": "Huan LI <zixia@zixia.net>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/wechaty/getting-started/issues"
+  },
+  "homepage": "https://github.com/wechaty/getting-started#readme",
   "dependencies": {
-    "core-js": "^3.8.3",
-    "vue": "^3.2.13",
-    "vue-router": "^4.0.3",
-    "vuex": "^4.0.0"
+    "dotenv": "^16.0.0",
+    "download": "^8.0.0",
+    "node-schedule": "^2.1.0",
+    "qrcode-terminal": "^0.12.0",
+    "request": "^2.88.2",
+    "wechaty": "^1.18.1",
+    "wechaty-cqrs": "^0.7.5",
+    "wechaty-plugin-contrib": "^1.11.1",
+    "wechaty-puppet-oicq": "^1.10.2",
+    "wechaty-puppet-walnut": "^1.11.6",
+    "wechaty-puppet-wechat": "^1.18.4",
+    "wechaty-puppet-wechat4u": "~1.11.1",
+    "wechaty-puppet-whatsapp": "^1.19.0",
+    "wechaty-puppet-xp": "^1.10.20"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
-    "@babel/eslint-parser": "^7.12.16",
-    "@vue/cli-plugin-babel": "~5.0.0",
-    "@vue/cli-plugin-eslint": "~5.0.0",
-    "@vue/cli-plugin-router": "~5.0.0",
-    "@vue/cli-plugin-vuex": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3",
-    "less": "^4.0.0",
-    "less-loader": "^8.0.0"
+    "@chatie/eslint-config": "^1.0.4",
+    "@chatie/git-scripts": "^0.6.2",
+    "@chatie/tsconfig": "^4.6.3",
+    "@types/download": "^8.0.1",
+    "@types/node-schedule": "^2.1.0",
+    "@types/qrcode-terminal": "^0.12.0",
+    "@types/request": "^2.48.8",
+    "check-node-version": "^4.2.1",
+    "is-pr": "^2.0.0",
+    "wechaty-puppet-mock": "^1.18.2"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "@babel/eslint-parser"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead",
-    "not ie 11"
-  ]
+  "git": {
+    "scripts": {
+      "pre-push": "npx git-scripts-pre-push"
+    }
+  }
 }

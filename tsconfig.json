@@ -1,0 +1,14 @@
+{
+  "extends": "@chatie/tsconfig",
+  "compilerOptions": {
+    "outDir": "dist",
+    "strict": false
+  },
+  "exclude": ["node_modules/", "dist/", "tests/fixtures/"],
+  "include": [
+    "examples/*.ts",
+    "scripts/**/*.ts",
+    "src/**/*.ts",
+    "tests/**/*.ts"
+  ]
+}
